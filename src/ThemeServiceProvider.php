@@ -13,9 +13,11 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Nova::serving(function (ServingNova $event) {
-            Nova::style('crm-theme', __DIR__.'/../resources/css/theme.css');
-        });
+        if(config('nova.theme', 'default') === 'minimal'){
+            Nova::serving(function (ServingNova $event) {
+                Nova::style('crm-theme', __DIR__.'/../resources/css/theme.css');
+            });
+        }
     }
 
     /**
